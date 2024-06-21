@@ -87,6 +87,8 @@ with stdenv; lib.makeOverridable mkDerivation (rec {
       # in at least rider and goland
       udev
     ])} >> $vmopts_file
+
+    sed 's/-Xmx2048m/${vmopts}/g' $vmopts_file | tee $vmopts_file
   '';
 
   installPhase = ''
